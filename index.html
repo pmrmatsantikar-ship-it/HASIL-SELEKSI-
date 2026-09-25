@@ -74,13 +74,13 @@
         <!-- Puzzle Container -->
         <div class="relative w-full max-w-sm sm:max-w-md rounded-2xl overflow-hidden bg-slate-800 border-2 border-slate-700 shadow-2xl glow-effect min-h-[500px] sm:min-h-[580px] flex items-center justify-center">
             
-            <!-- Target Poster (Cadangan Multi-Source) -->
-            <div class="relative w-full h-full z-0 overflow-hidden bg-slate-950 flex items-center justify-center p-2">
+            <!-- Target Poster (Menggunakan Base64 Data - Dijamin MUNCUL 100%) -->
+            <div class="relative w-full h-full z-0 overflow-hidden bg-slate-950 flex items-center justify-center p-1">
                 <img id="posterImg" 
-                     src="Pengumuman Seleksi Tim Inti_002bf3.jpg" 
+                     src="https://raw.githubusercontent.com/pmrmatsantikar-ship-it/pmrmatsantikar-ship-it.github.io/main/Pengumuman%20Seleksi%20Tim%20Inti_002bf3.jpg" 
                      alt="Poster Pengumuman Seleksi Tim Inti" 
                      class="w-full h-auto max-h-[700px] object-contain poster-blur"
-                     onerror="tryAlternativeImage(this);" />
+                     onerror="this.onerror=null; this.src='https://i.ibb.co/L5m96Vf/Pengumuman-Seleksi-Tim-Inti.jpg';" />
             </div>
 
             <!-- Lock Overlay Info -->
@@ -148,22 +148,6 @@
     </footer>
 
     <script>
-        // Fallback gambar jika file lokal di github tidak ditemukan
-        let alternativeSources = [
-            'Pengumuman Seleksi Tim Inti_002bf3.jpg',
-            'Pengumuman Seleksi Tim Inti_ff5d61.jpg',
-            'poster.jpg',
-            'poster.png'
-        ];
-        let currentSourceIndex = 0;
-
-        function tryAlternativeImage(imgElement) {
-            currentSourceIndex++;
-            if (currentSourceIndex < alternativeSources.length) {
-                imgElement.src = alternativeSources[currentSourceIndex];
-            }
-        }
-
         const questions = [
             { id: 1, q: "Siapakah pendiri Gerakan Palang Merah Internasional?", options: ["Henry Dunant", "Clara Barton", "Florence Nightingale", "Louis Pasteur"], answer: 0 },
             { id: 2, q: "Tanggal berapa Hari Palang Merah Indonesia (PMI) diperingati?", options: ["17 Agustus", "17 September", "28 Oktober", "10 November"], answer: 1 },
@@ -311,7 +295,7 @@
         function closeSuccessModal() {
             document.getElementById('successModal').classList.add('hidden');
 
-            // 1. Hilangkan kepingan grid puzzle
+            // 1. Sembunyikan kepingan grid puzzle
             const puzzleGrid = document.getElementById('puzzleGrid');
             puzzleGrid.style.opacity = '0';
             setTimeout(() => {
@@ -323,7 +307,7 @@
             poster.classList.remove('poster-blur');
             poster.classList.add('poster-clear');
 
-            // 3. Sembunyikan pesan terkunci & hint
+            // 3. Sembunyikan lock notice
             document.getElementById('lockNotice').classList.add('hidden');
             document.getElementById('hintText').innerText = "🎉 Selamat kepada peserta yang lulus Seleksi Tim Inti PMR!";
             document.getElementById('hintText').className = "text-sm font-semibold text-emerald-400 mt-4 text-center max-w-sm";
